@@ -88,6 +88,18 @@ void del_string(char names_ray[][30], int size)
 }
 */
 
+/* Start of program, user enter grades until limit is reached */ 
+void enter_grades(char names[][50], int grades[], int size)
+{
+	// SORT the grades as they're entered
+	for (int i = 0; i < size; ++i)
+	{
+		printf("\nEnter Name...\n --> ");
+		scanf("%s")
+	}
+}
+
+
 int main(int argc, char const *argv[])
 {
 	int student_size;
@@ -98,8 +110,9 @@ int main(int argc, char const *argv[])
 	printf("\n\nHow many students are being added??\n --> ");
 	scanf("%d", &student_size);
 
-	/* declare a 2-D array of strings to hold student names */
-	char student_names[student_size][50];
+	char student_names[student_size][50]; 	// declare a 2-D array of strings to hold student names 
+	int student_grades[student_size]; // size of the actual grades array will be same size as the amount of students
+	enter_grades(student_names, student_grades, student_size);
 	/*
 	do
 	{
