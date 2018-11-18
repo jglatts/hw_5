@@ -76,7 +76,11 @@ void enter_grades(char names[][50], float grades[], int size)
 /* Print a nice report and call other helper functions to get information */
 void print_report(char names[][50], float grades[], int size)
 {
-	float average, median, lowest, highest;
+	float average, median, lowest = grades[0], highest = grades[size - 1];
+	char highest_name[50], lowest_name[50];
+
+	strcpy(highest_name, names[size - 1]);
+	strcpy(lowest_name, names[0]);
 
 	printf("\n\n\n__________________________________________________\n");
 	printf("\n\tSorted Test Results");
@@ -87,6 +91,12 @@ void print_report(char names[][50], float grades[], int size)
 		printf("\nName: %s              Grade: %0.1f\n", names[i], grades[i]);
 	}
 
-	//call other functions to return information
-	// average, median, highest, lowest, and name of highest score / name of lowest score
-}
+	/* call other functions to return information
+	 average, median, highest, lowest, and name of highest score / name of lowest score
+	printf("\n%s\n", );
+	printf("%s\n", );
+	printf("%s\n", );
+	printf("%s\n", );
+	*/
+
+}	
