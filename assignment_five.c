@@ -41,6 +41,7 @@ int main(int argc, char const *argv[])
 void enter_grades(char names[][50], int grades[], int size)
 {
 	int temp;
+	char temp_names[size][50];   
 
 	for (int i = 0; i < size; ++i)
 	{
@@ -54,8 +55,11 @@ void enter_grades(char names[][50], int grades[], int size)
 		if ( i >= 1) {
 			if (grades[i] > grades[i - 1]) {
 					temp = grades[i];
+					strcpy(temp_names[i], names[i]);
 					grades[i] = grades[i - 1];
+					strcpy(names[i], names[i - 1]);
 					grades[i - 1] = temp;
+					strcpy(names[i - 1], temp_names[i]);
 				}
 
 			}				
