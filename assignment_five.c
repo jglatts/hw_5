@@ -40,6 +40,8 @@ int main(int argc, char const *argv[])
 
 void enter_grades(char names[][50], int grades[], int size)
 {
+	int temp;
+
 	for (int i = 0; i < size; ++i)
 	{
 		// ask for student name first
@@ -48,6 +50,27 @@ void enter_grades(char names[][50], int grades[], int size)
 		// get grades and sort as they're entered
 		printf("\nEnter grade for %s\n --> ", names[i]);
 		scanf("%d", &grades[i]); 
+
+		if ( i >= 1) {
+			if (grades[i] > grades[i - 1]) {
+					temp = grades[i];
+					grades[i] = grades[i - 1];
+					grades[i - 1] = temp;
+				}
+
+			}				
+
+		/* sort the grades, and keep track of the names
+		while ( i >= 1 ) {
+			if (grades[i] < grades[i - 1])
+			{
+				temp = grades[i];
+				grades[i] = grades[i - 1];
+				grades[i - 1] = temp;
+				break;
+			}
+		}
+		*/
 	}
 
 	// test print
