@@ -12,90 +12,22 @@ Due Date: 26 November 2018
 #include <time.h>
 
 
-/* load strings in 2-D array */
-
-/*
-void load_ray(char names_ray[][30], int size)
+struct StudentNames
 {
-	for (int i = 0; i < size ; ++i)
-	{
-		printf("Enter Comment...\n");
-		scanf("%s", names_ray[i]);
-	}
-}
-
-void print_strings(char names[][30], int size)
-{
-	printf("\n************************************\n");
-	for (int i = 0; i < size; ++i)
-	{
-		printf("  %s  ", names[size]);
-	}
-	printf("\n************************************\n");
-
-}
+		char student_names[student_size][50]; 	// declare a 2-D array of strings to hold student names 
+		int student_grades[student_size]; // size of the actual grades array will be same size as the amount of students
+};
 
 
-void find_value(char names_ray[][30], int size)
-{
-	char find_value;
-
-	printf("\nEnter a character to search for...\n --> ");
-	scanf("%c", &find_value);  // remove ampersand when implementing
-
-	printf("\nIndex[%d] --> %s\n", find_value, names_ray[find_value]);
-	//loop through all values and check each one
-	// get ASCII numbers to properly check
-	/*
-	for (int i = 0; i < size; ++i)
-	{
-		/* code */
-	/*
-}
-
-
-/* sort strings, smallest to largest */
-/*
-void sort_strings(char names_ray[][30], int size)
-{
-	char temp[size][30]; //temp storage for the greater value, does it have to be 2-D?
-
-	/* Bubble sort to find smallest string */
-	/*
-	for (int s = 0; s < size - 1; ++s)
-	{
-		for (int value = 0; value < size - s - 1; ++value)
-		{
-			if (strlen(names_ray[value]) > strlen(names_ray[value + 1]))
-			{
-				// use strcpy() to copy the values
-				strcpy(temp[value], names_ray[value]);
-				strcpy(names_ray[value], names_ray[value + 1]);
-				strcpy(names_ray[value + 1], temp[value]);
-			}
-		}
-		// gets length of smallest string?
-		printf("\nLength of string[%d] --> %ld\n", s, strlen(names_ray[s]));
-	}
-}
-
-
-
-/*
-void del_string(char names_ray[][30], int size)
-{
-
-}
-*/
-
-
+/* Test helper func() because of the buffer overflow */
 void enter_grades(int grades[], int index)
 {
 	int temp;
 
+	fflush(stdin);
 	printf("Enter Grade...\n --> ");
 	scanf("%d%*c", &grades[index]);
-	
+
 	// sort grades as they're entered
 	if (grades[index] < grades[index - 1])
 	{
@@ -112,12 +44,14 @@ void enter_names(char names[][50], int grades[], int size)
 	int temp;
 
 	// SORT the grades as they're entered
+	// skips over the first name\grade pair, damnit
 	for (int i = 0; i <= size; ++i)
 	{
 		// add seperate scanf() for number grade
 		printf("\nEnter Name...\n --> ");
 		fgets(names[i], 150, stdin);
-		// call to add individual grades, fix b\c buffer problem
+		fflush(stdin);
+		//fgets(&grades[i], 150, stdin); // will this work for int?
 		enter_grades(grades, i);
 	}
 
@@ -126,7 +60,7 @@ void enter_names(char names[][50], int grades[], int size)
 	// test print
 	for (int test = 0; test <= size; ++test)
 	{
-		printf("Name: %s -- Grade: %d;\n", names[test], grades[test]);
+		printf("\nName: %s -- Grade: %d;\n", names[test], grades[test]);
 	}
 }
 
@@ -140,10 +74,7 @@ int main(int argc, char const *argv[])
 	printf("\n__________________________________________________\n");
 	printf("\n\nHow many students are being added??\n --> ");
 	scanf("%d", &student_size);
-
-	char student_names[student_size][50]; 	// declare a 2-D array of strings to hold student names 
-	int student_grades[student_size]; // size of the actual grades array will be same size as the amount of students
-	enter_names(student_names, student_grades, student_size);
+	enter_grades
 
 	/*
 	do
