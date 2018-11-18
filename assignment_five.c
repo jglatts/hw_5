@@ -45,12 +45,15 @@ void enter_grades(char names[][50], int grades[], int size)
 		// ask for student name first
 		printf("\nEnter student name\n --> ");
 		scanf(" %[^\n]s", names[i]);   // space has to be in front for the scanf() to work 
+		// get grades and sort as they're entered
+		printf("\nEnter grade for %s\n --> ", names[i]);
+		scanf("%d", &grades[i]); 
 	}
 
 	// test print
 	for (int test = 0; test < size; ++test)
 	{
-		printf("\nName: %s\n", names[test]);
+		printf("\nName: %s            Grade: %d\n", names[test], grades[test]);
 	}
 
 }
