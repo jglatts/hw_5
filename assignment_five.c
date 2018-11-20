@@ -88,7 +88,7 @@ void print_report(char names[][50], float grades[], int size)
 
 	for (int i = 0; i < size; ++i)
 	{
-		printf("\nName: %s              Grade: %0.1f\n", names[i], grades[i]);
+		printf("\nName: %s \t\t\tGrade: %0.1f\n", names[i], grades[i]);
 	}
 
 	/* call other functions to return information
