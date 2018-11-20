@@ -55,7 +55,7 @@ void enter_grades(char names[][50], float grades[], int size)
 		scanf("%f", &grades[i]); 
 
 		if ( i >= 1) {
-			if (grades[i] > grades[i - 1]) {
+			if (grades[i] < grades[i - 1]) {
 					temp = grades[i];
 					strcpy(temp_names[i], names[i]);
 					grades[i] = grades[i - 1];
@@ -64,7 +64,7 @@ void enter_grades(char names[][50], float grades[], int size)
 					strcpy(names[i - 1], temp_names[i]);
 				}
 
-			}				
+			}
 
 	}
 
@@ -100,3 +100,4 @@ void print_report(char names[][50], float grades[], int size)
 	*/
 
 }	
+
