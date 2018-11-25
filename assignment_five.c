@@ -115,7 +115,7 @@ void print_report(char names[][50], float grades[], int size)
     median = median_grade(grades, size);
 
     printf("\nAverage: %.1f    Median: %.1f    Highest: %.1f    Lowest: %.1f\n", average, median, highest, lowest);
-
+    printf("\nHighest Grade: %s \t\tLowest Grade: %s\n", names[size - 1], names[0]);
 }
 
 
