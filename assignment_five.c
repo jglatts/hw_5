@@ -69,10 +69,12 @@ void enter_grades(char names[][50], float grades[], int size)
                 for (int k = 0; k < grades_entered; ++k) {
                     printf("\nChecking Values %.1f and %.1f", grades[k], grades[k - 1]);
                     if (grades[k] < grades[k - 1]){
-                        // add the correct strcpy() to finish the sort
                         temp = grades[k];
+                        strcpy(temp_names[k], names[k]);
                         grades[k] = grades[k - 1];
+                        strcpy(names[k], names[k - 1]);
                         grades[k - 1] = temp;
+                        strcpy(names[k - 1], temp_names[k]);
                     }
                 }
             }
