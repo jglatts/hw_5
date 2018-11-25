@@ -2,7 +2,7 @@
 
 CIS 1057 Assignment 5
 Author: John Glatts
-TA: Fang
+TA: Shi Kai Fang
 Due Date: 26 November 2018
 
 */
@@ -47,34 +47,48 @@ void enter_grades(char names[][50], float grades[], int size)
 {
     float temp;
     char temp_names[50][50];
+    int grades_entered = 0;
 
-    for (int i = 0; i < size; ++i)
-    {
+    for (int i = 0; i < size; ++i) {
+
         // ask for student name first
         printf("\nEnter student name\n --> ");
-        scanf(" %[^\n]s", names[i]);   // space has to be in front for the scanf() to work
+        // space has to be in front for the scanf() to work
+        scanf(" %[^\n]s", names[i]);
         // get grades and sort from highest to lowest
         printf("\nEnter grade for %s\n --> ", names[i]);
         scanf("%f", &grades[i]);
+        grades_entered++;
 
-        if ( i >= 1) {
-            if (grades[i] < grades[i - 1]) {
-                temp = grades[i];
-                strcpy(temp_names[i], names[i]);
-                grades[i] = grades[i - 1];
-                strcpy(names[i], names[i - 1]);
-                grades[i - 1] = temp;
-                strcpy(names[i - 1], temp_names[i]);
+        // sort grades as there entered, plz baby jesus
+        // make sure we can check a value at i-1
+        if (i >= 1 ) {
+            // loop through the current amount of grades entered
+            for (int j = 0; j < grades_entered; ++j) {
+                // loop to keep checking adjacent values
+                for (int k = 0; k < grades_entered; ++k) {
+                    printf("\nChecking Values %.1f and %.1f", grades[k], grades[k - 1]);
+                    if (grades[k] < grades[k - 1]){
+                        // add the correct strcpy() to finish the sort
+                        temp = grades[k];
+                        grades[k] = grades[k - 1];
+                        grades[k - 1] = temp;
+                    }
+                }
+            }
+            // test print to see what the sort is really doing
+            printf("\n");
+            for (int k = 0; k < size; ++k) {
+                printf(" %.1f ", grades[k]);
             }
 
         }
 
     }
-
-    // once all grades are entered, print formated report
+    // once all grades are entered, print formatted report
     print_report(names, grades, size);
-
 }
+
 
 /* Print a nice report and call other helper functions to get information */
 void print_report(char names[][50], float grades[], int size)
@@ -95,10 +109,10 @@ void print_report(char names[][50], float grades[], int size)
     }
 
     /* call other functions to return information */
-     average = average_grade(grades, size);
-     median = median_grade(grades, size);
+    average = average_grade(grades, size);
+    median = median_grade(grades, size);
 
-     printf("\nAverage: %.1f    Median: %.1f    Highest: %.1f    Lowest: %.1f\n", average, median, highest, lowest);
+    printf("\nAverage: %.1f    Median: %.1f    Highest: %.1f    Lowest: %.1f\n", average, median, highest, lowest);
 
 }
 
