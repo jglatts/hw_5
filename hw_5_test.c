@@ -1,17 +1,13 @@
 /*
-
 CIS 1057 Assignment 5
 Author: John Glatts
 TA: Shi Kai Fang
 Due Date: 26 November 2018
-
-
 ========================
- SORTING UNIT TESTING
+ SORTING UNIT TEST
 ========================
-
-
 */
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -51,8 +47,7 @@ int main(int argc, char const *argv[])
 
 void random_grade(int index, float grades[])
 {
-    int random = rand() % 100 + 1;
-    grades[index] = random;
+    grades[index] = rand() % 100 + 1;
 }
 
 
@@ -61,38 +56,43 @@ void enter_grades(char names[][50], float grades[], int size)
 {
     float temp;
     char temp_names[50][50];
-    int grades_entered = 0;
+    char first_check_char, second_check_char;
+    int names_entered = 0;
 
     for (int i = 0; i < size; ++i) {
-
         // ask for student name first
         printf("\nEnter student name\n --> ");
-        // space has to be in front for the scanf() to work
+        // space has to be in front for the scanf() to work on windows CL.
         scanf(" %[^\n]s", names[i]);
         // get grades and sort from highest to lowest
         random_grade(i, grades);
-        grades_entered++;
+        names_entered++;
 
         // sort grades as there entered, plz baby jesus
         // make sure we can check a value at i-1
         if (i >= 1 ) {
-            // loop through the current amount of grades entered
-            for (int j = 0; j < grades_entered; ++j) {
-                // loop to keep checking adjacent values
-                for (int k = 0; k < grades_entered; ++k) {
-                    printf("\nChecking Values %.1f and %.1f", grades[k], grades[k - 1]);
-                    if (grades[k] < grades[k - 1]){
-                        // add the correct strcpy() to finish the sort
+            // loop through the current amount of names entered
+            for (int j = 0; j < names_entered; ++j) {
+                // loop to keep checking names
+                for (int k = 0; k < names_entered; ++k) {
+                    // place names in the right order
+                    first_check_char = names[k][0];
+                    second_check_char = names[k-1][0];
+                    if (first_check_char < second_check_char){
                         temp = grades[k];
+                        strcpy(temp_names[k], names[k]);
                         grades[k] = grades[k - 1];
+                        strcpy(names[k], names[k - 1]);
                         grades[k - 1] = temp;
+                        strcpy(names[k - 1], temp_names[k]);
                     }
                 }
             }
             // test print to see what the sort is really doing
             printf("\n");
             for (int k = 0; k < size; ++k) {
-                printf(" %.1f ", grades[k]);
+                printf("%s --> %.1f", names[k], grades[k]);
+                printf("\n");
             }
 
         }
@@ -118,6 +118,7 @@ void print_report(char names[][50], float grades[], int size)
 
     for (int i = 0; i < size; ++i)
     {
+        // add formatting tools instead of padding
         printf("\nName: %s \t\t\tGrade: %0.1f\n", names[i], grades[i]);
     }
 
