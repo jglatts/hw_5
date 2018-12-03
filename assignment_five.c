@@ -95,13 +95,13 @@ void print_report(char names[][50], float grades[], int size)
     float average, median, highest, lowest;
     int highest_name_index, lowest_name_index;
 
-    printf("\n\n\n__________________________________________________\n");
+    printf("\n\n\n*************************************");
     printf("\n\tSorted Test Results");
-    printf("\n__________________________________________________\n");
+    printf("\n*************************************\n");
 
     for (int i = 0; i < size; ++i)
     {
-        printf("\nName: %s \tGrade: %3.2f\n", names[i], grades[i]);
+        printf("\nName: %-15s \tGrade: %3.2f\n", names[i], grades[i]);
     }
     // call helper functions for information
     highest_name_index = highest_grade_name(grades, size);
