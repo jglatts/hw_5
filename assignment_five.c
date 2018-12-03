@@ -101,7 +101,7 @@ void print_report(char names[][50], float grades[], int size)
 
     for (int i = 0; i < size; ++i)
     {
-        printf("\nName: %-15s \tGrade: %3.2f\n", names[i], grades[i]);
+        printf("\nName: %-15s \tGrade: %3.1f\n", names[i], grades[i]);
     }
     // call helper functions for information
     highest_name_index = highest_grade_name(grades, size);
@@ -112,7 +112,7 @@ void print_report(char names[][50], float grades[], int size)
     median = median_grade(grades, size);
 
     // print grade information
-    printf("\nAverage: %3.2f    Median: %3.2f    Highest: %3.2f    Lowest: %3.2f\n", average, median, highest, lowest);
+    printf("\nAverage: %3.1f    Median: %3.1f    Highest: %3.1f    Lowest: %3.1f\n", average, median, highest, lowest);
     printf("\nHighest Grade: %s \t\tLowest Grade: %s\n", names[highest_name_index], names[lowest_name_index]);
 }
 
